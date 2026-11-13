@@ -1,0 +1,6 @@
+#!/bin/sh
+# 卸载前把桌面快捷 App 从主屏幕注销（升级时不用管，postinst 会重新注册）
+if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
+    uicache -u /Applications/xrkitLauncher.app >/dev/null 2>&1 || true
+fi
+exit 0

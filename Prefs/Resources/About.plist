@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>只在 iOS 17.3.1 上测试过。需要 roothide 越狱环境，只装了巨魔的手机用不了。打开本页时会到 GitHub 查一次有没有新版本。</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSTitleValueCell</string>
+			<key>get</key>
+			<string>xrkVersionValue:</string>
+			<key>label</key>
+			<string>版本</string>
+			<key>xrkValue</key>
+			<string>0.2.0</string>
+			<key>xrkVersion</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSTitleValueCell</string>
+			<key>get</key>
+			<string>xrkStaticValue:</string>
+			<key>label</key>
+			<string>作者</string>
+			<key>xrkValue</key>
+			<string>xyrith</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSTitleValueCell</string>
+			<key>get</key>
+			<string>xrkStaticValue:</string>
+			<key>label</key>
+			<string>适用系统</string>
+			<key>xrkValue</key>
+			<string>iOS 17</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSTitleValueCell</string>
+			<key>get</key>
+			<string>xrkStaticValue:</string>
+			<key>label</key>
+			<string>越狱环境</string>
+			<key>xrkValue</key>
+			<string>roothide</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>软件源地址：https://oryanfang.github.io/repo/
+「复制问题信息」会复制 xrkit 版本、iOS 版本、机型和改过的设置（锁定的 App 只写数量），可以贴进反馈里。</string>
+			<key>label</key>
+			<string>软件源与反馈</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>xrkOpenRepo</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>软件源</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>xrkOpenIssues</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>反馈问题</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>xrkCopyInfo</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>复制问题信息</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>把 xrkit 的所有开关和滑块恢复成默认值，多任务里锁定的 App 也会清空。完成后需要注销。</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>xrkResetAll</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>重置所有设置</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>关于</string>
+</dict>
+</plist>

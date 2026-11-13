@@ -1,0 +1,9 @@
+#!/bin/sh
+# 桌面快捷 App 只在调试版里有：有就注册到主屏幕；没有（正式版，或从调试版换成正式版）就把旧图标注销掉
+APP=/Applications/xrkitLauncher.app
+if [ -d "$APP" ]; then
+    uicache -p "$APP" >/dev/null 2>&1 || true
+else
+    uicache -u "$APP" >/dev/null 2>&1 || true
+fi
+exit 0

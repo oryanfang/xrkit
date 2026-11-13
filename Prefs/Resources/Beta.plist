@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>这里的功能还在测试，可能不稳定。遇到桌面卡住、Dock 错位，先关掉这里的开关；万一反复重启进了安全模式，xrkit 不会加载，回来关掉即可。</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>竖线右边显示在多任务里、但不在 Dock 里的 App，按最近使用排序，点按打开。右边有 App 时 Dock 图标会自动缩小排开。</string>
+			<key>label</key>
+			<string>Mac 风格 Dock</string>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>com.xyrith.xrkit/prefschanged</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.xyrith.xrkit</string>
+			<key>key</key>
+			<string>dockRunningDots</string>
+			<key>label</key>
+			<string>运行中的 App 显示白点</string>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>com.xyrith.xrkit/prefschanged</string>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>default</key>
+			<integer>0</integer>
+			<key>defaults</key>
+			<string>com.xyrith.xrkit</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>key</key>
+			<string>dockRecentApps</string>
+			<key>label</key>
+			<string>竖线右边的 App</string>
+			<key>validTitles</key>
+			<array>
+				<string>关</string>
+				<string>1 个</string>
+				<string>2 个</string>
+				<string>3 个</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+			</array>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>Beta</string>
+</dict>
+</plist>
