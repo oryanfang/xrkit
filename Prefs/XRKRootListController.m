@@ -1,4 +1,7 @@
 #import "XRKRootListController.h"
+#import "XRKLocalize.h"
+
+NSInteger gXRKPrefsLanguage = -1;
 #import <UIKit/UIKit.h>
 #import <dlfcn.h>
 #import <sys/utsname.h>
@@ -30,11 +33,13 @@ static NSString *const kXRKSourceURL = @"https://oryanfang.github.io/repo/";
 static UIImage *XRKRespringTagImage(UIFont *font) {
     static UIImage *image;
     static CGFloat cachedSize;
-    if (image && cachedSize == font.pointSize) return image;
+    static NSString *cachedText;
+    NSString *text = XRKL(@"需注销");
+    if (image && cachedSize == font.pointSize && [cachedText isEqualToString:text]) return image;
     cachedSize = font.pointSize;
+    cachedText = text;
     UIFont *tagFont = [UIFont systemFontOfSize:round(font.pointSize * 0.68) weight:UIFontWeightMedium];
     NSDictionary *attrs = @{NSFontAttributeName: tagFont, NSForegroundColorAttributeName: UIColor.systemOrangeColor};
-    NSString *text = @"需注销";
     CGSize t = [text sizeWithAttributes:attrs];
     CGSize size = CGSizeMake(ceil(t.width) + 10, ceil(t.height) + 3);
     UIGraphicsImageRenderer *r = [[UIGraphicsImageRenderer alloc] initWithSize:size];
@@ -77,7 +82,7 @@ static void XRKRespringNow(void) {
 static void XRKConfirmRespring(UIViewController *vc, NSString *title, NSString *message, NSString *cancelTitle) {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:cancelTitle style:UIAlertActionStyleCancel handler:nil]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"注销" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *a) { XRKRespringNow(); }]];
+    [alert addAction:[UIAlertAction actionWithTitle:XRKL(@"注销") style:UIAlertActionStyleDestructive handler:^(UIAlertAction *a) { XRKRespringNow(); }]];
     [vc presentViewController:alert animated:YES completion:nil];
 }
 
@@ -86,6 +91,7 @@ static void XRKConfirmRespring(UIViewController *vc, NSString *title, NSString *
 - (NSArray *)specifiers {
     if (!_specifiers) {
         _specifiers = [self loadSpecifiersFromPlistName:@"Root" target:self];
+        XRKLocalizeSpecifiers(_specifiers);
     }
     return _specifiers;
 }
@@ -99,12 +105,18 @@ static void XRKConfirmRespring(UIViewController *vc, NSString *title, NSString *
 // 注销放在导航栏右上角（蓝字），不占列表位置
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"注销" style:UIBarButtonItemStylePlain
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:XRKL(@"注销") style:UIBarButtonItemStylePlain
                                                                              target:self action:@selector(respring)];
 }
 
+// 关于页切换语言后重新加载：注销按钮的文字也跟着换
+- (void)reloadSpecifiers {
+    [super reloadSpecifiers];
+    self.navigationItem.rightBarButtonItem.title = XRKL(@"注销");
+}
+
 - (void)respring {
-    XRKConfirmRespring(self, @"注销", @"确定要注销（重启 SpringBoard）吗？", @"取消");
+    XRKConfirmRespring(self, XRKL(@"注销"), XRKL(@"确定要注销（重启 SpringBoard）吗？"), XRKL(@"取消"));
 }
 
 @end
@@ -188,24 +200,24 @@ static BOOL XRKVersionNewer(NSString *a, NSString *b) {
 
 // 版本行显示的值：有新版时换成「有新版 x.x.x」
 - (id)xrkVersionValue:(PSSpecifier *)specifier {
-    return _xrkNewVersion ? [NSString stringWithFormat:@"有新版 %@", _xrkNewVersion] : [specifier propertyForKey:@"xrkValue"];
+    return _xrkNewVersion ? [NSString stringWithFormat:XRKL(@"有新版 %@"), _xrkNewVersion] : [specifier propertyForKey:@"xrkValue"];
 }
 
 #pragma mark - 关于页：软件源、反馈
 
 // 软件源：在 Sileo 里添加，或复制地址（装了别的包管理器时自己粘贴）
 - (void)xrkOpenRepo {
-    UIAlertController *sheet = [UIAlertController alertControllerWithTitle:@"软件源" message:kXRKSourceURL
+    UIAlertController *sheet = [UIAlertController alertControllerWithTitle:XRKL(@"软件源") message:kXRKSourceURL
                                                             preferredStyle:UIAlertControllerStyleActionSheet];
     NSURL *sileo = [NSURL URLWithString:[@"sileo://source/" stringByAppendingString:kXRKSourceURL]];
     // 「设置」没声明 sileo 这个 scheme，canOpenURL 总是 NO，所以不判断，直接给出（没装 Sileo 时点了没反应）
-    [sheet addAction:[UIAlertAction actionWithTitle:@"在 Sileo 中添加" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a) {
+    [sheet addAction:[UIAlertAction actionWithTitle:XRKL(@"在 Sileo 中添加") style:UIAlertActionStyleDefault handler:^(UIAlertAction *a) {
         [UIApplication.sharedApplication openURL:sileo options:@{} completionHandler:nil];
     }]];
-    [sheet addAction:[UIAlertAction actionWithTitle:@"复制地址" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a) {
+    [sheet addAction:[UIAlertAction actionWithTitle:XRKL(@"复制地址") style:UIAlertActionStyleDefault handler:^(UIAlertAction *a) {
         UIPasteboard.generalPasteboard.string = kXRKSourceURL;
     }]];
-    [sheet addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    [sheet addAction:[UIAlertAction actionWithTitle:XRKL(@"取消") style:UIAlertActionStyleCancel handler:nil]];
     // iPad 上 action sheet 要有锚点
     sheet.popoverPresentationController.sourceView = self.view;
     sheet.popoverPresentationController.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds), 1, 1);
@@ -224,7 +236,7 @@ static BOOL XRKVersionNewer(NSString *a, NSString *b) {
     NSMutableString *text = [NSMutableString string];
     [text appendFormat:@"xrkit %@\n", [[self xrk_versionSpecifier] propertyForKey:@"xrkValue"] ?: @"?"];
     [text appendFormat:@"iOS %@ · %s\n", UIDevice.currentDevice.systemVersion, u.machine];
-    [text appendString:@"越狱环境：roothide\n"];
+    [text appendString:@"Jailbreak: roothide\n"];   // 这段要贴进 GitHub Issue，统一用英文
 
     CFStringRef domain = CFSTR("com.xyrith.xrkit");
     CFPreferencesSynchronize(domain, kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
@@ -232,21 +244,21 @@ static BOOL XRKVersionNewer(NSString *a, NSString *b) {
     NSDictionary *prefs = keys.count ? CFBridgingRelease(CFPreferencesCopyMultiple((__bridge CFArrayRef)keys, domain,
                                                                                    kCFPreferencesCurrentUser, kCFPreferencesAnyHost)) : @{};
     if (!prefs.count) {
-        [text appendString:@"设置：全部默认\n"];
+        [text appendString:@"Settings: all default\n"];
     } else {
-        [text appendString:@"改过的设置：\n"];
+        [text appendString:@"Changed settings:\n"];
         for (NSString *key in [prefs.allKeys sortedArrayUsingSelector:@selector(compare:)]) {
             id v = prefs[key];
             if ([v isKindOfClass:[NSArray class]] || [v isKindOfClass:[NSDictionary class]]) {
-                [text appendFormat:@"  %@ = %lu 项\n", key, (unsigned long)[v count]];
+                [text appendFormat:@"  %@ = %lu items\n", key, (unsigned long)[v count]];
             } else {
                 [text appendFormat:@"  %@ = %@\n", key, v];
             }
         }
     }
     UIPasteboard.generalPasteboard.string = text;
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"已复制" message:text preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleCancel handler:nil]];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:XRKL(@"已复制") message:text preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:XRKL(@"好") style:UIAlertActionStyleCancel handler:nil]];
     [self presentViewController:alert animated:YES completion:nil];
 }
 
@@ -268,12 +280,12 @@ static BOOL XRKVersionNewer(NSString *a, NSString *b) {
 // 重置所有设置：删掉 xrkit 偏好域里的全部键（开关、滑块、锁定的 App），通知插件重读，再问要不要注销。
 // 「底部搜索按钮」存在系统设置里，不受影响
 - (void)xrkResetAll {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"重置所有设置"
-        message:@"xrkit 的所有开关和滑块都会恢复默认，多任务里锁定的 App 也会清空。确定吗？"
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:XRKL(@"重置所有设置")
+        message:XRKL(@"xrkit 的所有开关和滑块都会恢复默认，多任务里锁定的 App 也会清空。确定吗？")
         preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:XRKL(@"取消") style:UIAlertActionStyleCancel handler:nil]];
     __weak typeof(self) weakSelf = self;
-    [alert addAction:[UIAlertAction actionWithTitle:@"重置" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *a) {
+    [alert addAction:[UIAlertAction actionWithTitle:XRKL(@"重置") style:UIAlertActionStyleDestructive handler:^(UIAlertAction *a) {
         CFStringRef domain = CFSTR("com.xyrith.xrkit");
         CFArrayRef keys = CFPreferencesCopyKeyList(domain, kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
         if (keys) {
@@ -282,7 +294,7 @@ static BOOL XRKVersionNewer(NSString *a, NSString *b) {
         }
         CFPreferencesSynchronize(domain, kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
         CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), CFSTR("com.xyrith.xrkit/prefschanged"), NULL, NULL, YES);
-        XRKConfirmRespring(weakSelf, @"已重置", @"有些设置要注销后才会完全恢复，现在注销吗？", @"稍后");
+        XRKConfirmRespring(weakSelf, XRKL(@"已重置"), XRKL(@"有些设置要注销后才会完全恢复，现在注销吗？"), XRKL(@"稍后"));
     }]];
     [self presentViewController:alert animated:YES completion:nil];
 }
@@ -293,6 +305,8 @@ static BOOL XRKVersionNewer(NSString *a, NSString *b) {
     if (!_specifiers) {
         NSString *plistName = [self.specifier propertyForKey:@"plistName"];
         _xrkAllSpecifiers = plistName ? [self loadSpecifiersFromPlistName:plistName target:self] : @[];
+        XRKLocalizeSpecifiers(_xrkAllSpecifiers);
+        if (self.title.length) self.title = XRKL(self.title);
         NSMutableArray *visible = [NSMutableArray array];
         for (PSSpecifier *spec in _xrkAllSpecifiers) {
             NSString *requires = [spec propertyForKey:@"xrkRequires"];
@@ -340,6 +354,15 @@ static BOOL XRKVersionNewer(NSString *a, NSString *b) {
 
     NSString *key = [specifier propertyForKey:@"key"];
     if (!key) return;
+    // 关于页「语言」：马上换，导航栈里已经打开的设置页（首页、关于页）都重新加载
+    if ([key isEqualToString:@"prefsLanguage"]) {
+        XRKSetPrefsLanguage([value integerValue]);
+        for (UIViewController *vc in self.navigationController.viewControllers) {
+            if ([vc isKindOfClass:[XRKRootListController class]] || [vc isKindOfClass:[XRKSubListController class]])
+                [(PSListController *)vc reloadSpecifiers];
+        }
+        return;
+    }
     NSMutableArray *dependents = [NSMutableArray array];
     for (PSSpecifier *spec in _xrkAllSpecifiers) {
         if ([[spec propertyForKey:@"xrkRequires"] isEqualToString:key]) [dependents addObject:spec];

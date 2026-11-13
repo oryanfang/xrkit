@@ -1,70 +1,57 @@
 # xrkit
 
-<img src="docs/xrkit-icon.png" width="128" alt="xrkit 图标">
+**An all‑in‑one tweak for jailbroken iOS 17** · [简体中文](README.zh-CN.md)
 
-给 iOS 17 越狱设备用的综合优化插件：主屏幕、锁屏、控制中心、多任务，一个插件里按需开关。代码全部从头写。
+Home Screen, Lock Screen, Control Center and the App Switcher, each change behind its own switch. xrkit puts the small system tweaks you'd otherwise need several packages for into one settings page, and ships its own Control Center module loader with 15 modules. Written from scratch.
 
-> **适用系统**：iOS 17，**只在 iOS 17.3.1 上测试过**，其他版本可能有部分功能不生效。
-> **越狱环境**：roothide（包架构 `iphoneos-arm64e`）。rootless / rootful 需要自己改打包配置。
+<p align="center">
+  <img src="docs/screenshots/settings.png" width="30%" alt="Settings › xrkit">
+  <img src="docs/screenshots/control-center.png" width="30%" alt="Control Center settings with xrkit's modules">
+  <img src="docs/screenshots/homescreen.png" width="30%" alt="Home Screen settings">
+</p>
 
-## 安装
+Objective‑C / Logos, built with Theos, for **roothide** jailbreaks. Made for iOS 17 and **only tested on iOS 17.3.1**; some features may not work on other versions. The settings UI is in English and Chinese: it follows the system language, or pick one under About › Language.
 
-在 Sileo / Zebra 里添加软件源 `https://oryanfang.github.io/repo/`，搜索 **xrkit** 安装。也可以在 [Releases](https://github.com/oryanfang/xrkit/releases) 下载 `.deb`。
+## Features
 
-## 功能
+**Home Screen**
+- Hide: the home bar, the Today view, the App Library, page dots, the Search button, icon labels, notification badges.
+- Folders: hide the background; show the folder as its first app's icon (the folder's badge still shows).
+- Dock: hide it, background style (system / clear / dark / light), icon count (3–6; icons shrink to fit 6).
+- Icons: badges take the app's main color, download percentage on installing apps, fade icons out when idle.
+- Screenshots: skip the thumbnail in the corner and save straight to Photos.
 
-**主屏幕**
-- 隐藏：底部横条、负一屏、App 资源库、页面圆点、底部搜索按钮、图标名称、通知角标
-- 文件夹：隐藏背景、文件夹图标显示第一个 App 的图标
-- Dock：隐藏、背景样式（系统 / 深色 / 浅色 / 透明）、图标数量（3～6 个）
-- 图标：角标跟随 App 主色调、下载时显示百分比、静止一段时间后半透明
-- 截图：不显示左下角预览，直接存相册
+**Lock Screen**
+- Hide the flashlight / camera buttons, "Swipe up to open" and the Control Center hint in the top‑right corner.
+- Disable swiping left for the camera and pulling down for Search.
+- Go straight to the Home Screen after Face ID (optionally stay on the Lock Screen when there are notifications).
+- Battery percentage while charging; the Now Playing card can collapse when paused or stay hidden.
 
-**锁屏**
-- 隐藏手电筒 / 相机按钮、「上滑打开」、右上角控制中心提示条
-- 禁止左滑打开相机、禁止下滑搜索
-- 面容识别后直接进主屏幕（可选：有通知时停在锁屏）
-- 充电时显示电量、音乐播放器显示方式
+**Control Center**
+- Background and module transparency, module corner radius, hide the status bar.
+- Percentages on the brightness and volume sliders.
+- Module loader (a CCSupport replacement): loads third‑party modules, and the built‑in fixed modules can be moved and removed.
+- Built‑in modules: respring, lock, screenshot, auto‑brightness, clear apps, xrkit settings, VPN (long‑press to switch), dark mode, Night Shift, True Tone, keep awake, personal hotspot, location, live network speed, battery info.
 
-**控制中心**
-- 整体背景 / 模块背景透明度、模块圆角、隐藏状态栏
-- 亮度和音量滑块显示百分比
-- 模块加载器（可替代 CCSupport）：加载第三方模块，原本固定的模块也能移动、删除
-- 自带模块：注销、锁屏、截屏、自动亮度、清除后台、xrkit 设置、VPN（长按切换）、深色模式、夜览、原彩、常亮、个人热点、定位、实时网速、电池信息
+**App Switcher**
+- Layout: system (stack) / grid / iPad.
+- Hide card titles and icons, long‑press to lock an app (locked apps can't be swiped away), pull down on any card to clear all.
+- Card size, corner radius, spacing and vertical position.
 
-**多任务**
-- 排列样式：系统 / 网格 / iPad
-- 隐藏卡片名称和图标、长按锁定 App、下拉清除全部
-- 卡片大小、圆角、间距、上下位置
+**Beta**
+- Mac‑style Dock: dots under running apps, and recent apps to the right of a divider.
 
-**实验（Beta）**
-- Mac 风格 Dock：运行中的 App 下面显示白点，竖线右边显示最近用过的 App
+**About page**
+- Language (System / 中文 / English), check GitHub for a new version, report an issue, copy debug info (versions, device model and changed settings; not which apps you locked), reset all settings.
 
-设置在「设置 › xrkit」。部分选项需要注销才生效，设置页里会标「需注销」。
+Settings live in Settings › xrkit. Some options need a respring; the settings page marks them.
 
-## 编译
+## Install
 
-需要 [Theos](https://theos.dev)（roothide 版）和 GNU make 4（macOS 自带的 make 3.81 不行，用 Homebrew 的 `gmake`）。
+Add the source `https://oryanfang.github.io/repo/` in Sileo or Zebra and install **xrkit**. Or download the `.deb` from [Releases](https://github.com/oryanfang/xrkit/releases).
 
-```bash
-gmake package                     # 调试版（会写调试日志）
-gmake package FINALPACKAGE=1      # 正式版
-```
+roothide only (package architecture `iphoneos-arm64e`). For rootless / rootful you need to change the packaging yourself, see [BUILDING.md](BUILDING.md).
 
-直接装到手机：在项目根目录建一个 `local.mk`（不进仓库），写上手机地址：
+## License
 
-```make
-THEOS_DEVICE_IP = iphone.local
-```
-
-然后 `gmake package install`。Makefile 默认 Theos 在 `~/theos-roothide`，路径不同请改 Makefile 第一段。
-
-## 目录
-
-| 目录 | 内容 |
-|---|---|
-| `Tweak/` | 注入 SpringBoard 的代码，每个功能区一个文件 |
-| `Shared/` | 偏好读取、通用工具、调试日志 |
-| `Prefs/` | 设置面板；设置页内容由 `Prefs/make_plists.py` 生成 |
-| `Modules/` | 自带的控制中心模块 |
-| `Launcher/` | 调试版的桌面快捷入口 |
+Licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE): free for personal study, research and other noncommercial use; commercial use is not allowed.

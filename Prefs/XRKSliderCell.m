@@ -1,4 +1,5 @@
 #import "XRKSliderCell.h"
+#import "XRKLocalize.h"
 #import <Preferences/PSSpecifier.h>
 #import <Preferences/PSListController.h>
 
@@ -41,7 +42,7 @@
         [self.contentView addSubview:v];
     }
     // 数值栏按最长的数值定宽（比如「-15%」「10.0 秒」），数字变化时滑块不会跟着伸缩
-    CGFloat valueWidth = ceil([@"10.0 秒" sizeWithAttributes:@{NSFontAttributeName: _valueLabel.font}].width) + 2;
+    CGFloat valueWidth = ceil([[NSString stringWithFormat:XRKL(@"%.1f 秒"), 10.0] sizeWithAttributes:@{NSFontAttributeName: _valueLabel.font}].width) + 2;
     UILayoutGuide *margins = self.contentView.layoutMarginsGuide;
     _nameWidth = [_nameLabel.widthAnchor constraintEqualToConstant:0];
     [NSLayoutConstraint activateConstraints:@[
@@ -103,7 +104,7 @@
         long p = lroundf(v * 100);
         _valueLabel.text = p > 0 ? [NSString stringWithFormat:@"+%ld%%", p] : [NSString stringWithFormat:@"%ld%%", p];
     } else if ([format isEqualToString:@"seconds"]) {
-        _valueLabel.text = [NSString stringWithFormat:@"%.1f 秒", v];
+        _valueLabel.text = [NSString stringWithFormat:XRKL(@"%.1f 秒"), v];
     } else {
         _valueLabel.text = [NSString stringWithFormat:@"%.2f", v];
     }

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%.1f 秒</key>
+	<string>%.1f s</string>
+	<key>1 个</key>
+	<string>1</string>
+	<key>100% / 0% 是默认样子，下次打开多任务生效；「iPad」样式下要注销才生效。</key>
+	<string>100% / 0% is the default. Takes effect the next time the App Switcher opens; in the iPad layout it needs a respring.</string>
+	<key>100% 是系统原样，下次打开控制中心生效。音乐等模块自己画背景，不受「模块背景」影响。</key>
+	<string>100% is the system default. Takes effect the next time Control Center opens. Modules like Music draw their own background and aren't affected by "Module Background".</string>
+	<key>2 个</key>
+	<string>2</string>
+	<key>3 个</key>
+	<string>3</string>
+	<key>4 个（系统）</key>
+	<string>4 (System)</string>
+	<key>5 个</key>
+	<string>5</string>
+	<key>6 个</key>
+	<string>6</string>
+	<key>6 个时图标会自动缩小一点才放得下。</key>
+	<string>With 6 icons, they shrink slightly to fit.</string>
+	<key>App 资源库</key>
+	<string>App Library</string>
+	<key>Mac 风格 Dock</key>
+	<string>Mac-Style Dock</string>
+	<key>xrkit 的所有开关和滑块都会恢复默认，多任务里锁定的 App 也会清空。确定吗？</key>
+	<string>All xrkit switches and sliders will go back to their defaults and locked apps will be cleared. Continue?</string>
+	<key>「上滑打开」</key>
+	<string>"Swipe up to open"</string>
+	<key>「底部搜索按钮」和系统设置里的同一个开关同步。</key>
+	<string>"Search Button" is the same switch as the one in system Settings.</string>
+	<key>「暂停后收起」：暂停后播放器马上从锁屏消失（系统会再留一段时间）。
+「完全隐藏」：播放时也不在锁屏显示。</key>
+	<string>Hide When Paused: the player leaves the Lock Screen as soon as you pause (the system keeps it a while).
+Always Hide: never shown on the Lock Screen, even while playing.</string>
+	<key>「网格」：卡片排成网格，上滑和打开、关闭的手感还是 iPhone 那套。
+「iPad」：直接用 iPad 的多任务界面和手势。带卡死保护：万一卡住超过 5 秒，会自动改回「系统」并重启桌面。</key>
+	<string>Grid: cards in a grid, with iPhone gestures and animations.
+iPad: the iPad App Switcher and gestures. Has a freeze guard: if it hangs for more than 5 seconds it switches back to System and restarts SpringBoard.</string>
+	<key>上下位置</key>
+	<string>Position</string>
+	<key>下载时显示百分比</key>
+	<string>Download Percentage</string>
+	<key>不显示左下角预览</key>
+	<string>No Thumbnail Preview</string>
+	<key>中文</key>
+	<string>中文</string>
+	<key>主屏幕</key>
+	<string>Home Screen</string>
+	<key>亮度和音量显示百分比</key>
+	<string>Slider Percentages</string>
+	<key>作者</key>
+	<string>Author</string>
+	<key>充电时显示电量</key>
+	<string>Battery While Charging</string>
+	<key>充电时电量显示在锁屏底部两个按钮中间。</key>
+	<string>While charging, the battery level shows between the two buttons at the bottom.</string>
+	<key>关</key>
+	<string>Off</string>
+	<key>关于</key>
+	<string>About</string>
+	<key>减少图标数量前，先把多出来的图标拖出 Dock，否则会被系统挪到主屏幕其他位置。</key>
+	<string>Before lowering the icon count, drag the extra icons out of the Dock, or the system will move them elsewhere on the Home Screen.</string>
+	<key>卡片</key>
+	<string>Cards</string>
+	<key>卡片格式</key>
+	<string>Card Style</string>
+	<key>反馈问题</key>
+	<string>Report an Issue</string>
+	<key>取消</key>
+	<string>Cancel</string>
+	<key>只在 iOS 17.3.1 上测试过。需要 roothide 越狱环境，只装了巨魔的手机用不了。打开本页时会到 GitHub 查一次有没有新版本。</key>
+	<string>Only tested on iOS 17.3.1. Requires a roothide jailbreak; it won't work with TrollStore alone. Opening this page checks GitHub once for a new version.</string>
+	<key>右上角控制中心提示条</key>
+	<string>Control Center Hint</string>
+	<key>启用 xrkit</key>
+	<string>Enable xrkit</string>
+	<key>启用更多控件</key>
+	<string>Enable More Controls</string>
+	<key>图标</key>
+	<string>Icons</string>
+	<key>图标名称</key>
+	<string>Icon Labels</string>
+	<key>图标数量</key>
+	<string>Icon Count</string>
+	<key>圆角</key>
+	<string>Corners</string>
+	<key>在 Sileo 中添加</key>
+	<string>Add to Sileo</string>
+	<key>复制地址</key>
+	<string>Copy URL</string>
+	<key>复制问题信息</key>
+	<string>Copy Debug Info</string>
+	<key>外观</key>
+	<string>Appearance</string>
+	<key>多任务</key>
+	<string>App Switcher</string>
+	<key>大小</key>
+	<string>Size</string>
+	<key>好</key>
+	<string>OK</string>
+	<key>完全隐藏</key>
+	<string>Always Hide</string>
+	<key>实验</key>
+	<string>Experimental</string>
+	<key>已复制</key>
+	<string>Copied</string>
+	<key>已重置</key>
+	<string>Reset Done</string>
+	<key>底部搜索按钮</key>
+	<string>Search Button</string>
+	<key>底部横条</key>
+	<string>Home Bar</string>
+	<key>延迟</key>
+	<string>Delay</string>
+	<key>往下拉清除全部</key>
+	<string>Pull Down to Clear All</string>
+	<key>截图</key>
+	<string>Screenshots</string>
+	<key>截图后直接存进相册，不弹出左下角的缩略图。控制中心里的截屏模块也一样。</key>
+	<string>Screenshots go straight to Photos without the thumbnail in the corner. Also applies to the Screenshot module in Control Center.</string>
+	<key>手势</key>
+	<string>Gestures</string>
+	<key>手电筒按钮</key>
+	<string>Flashlight Button</string>
+	<key>打开后，xrkit 自带的控件（注销、锁屏、截屏、VPN、网速、电池等）和其他插件的控件都能加进控制中心；网络、音乐这些原本固定的控件也能在「设置 › 控制中心」里移动或删掉。现在的控件排列会保留。装了 CCSupport 时这个开关不起作用。</key>
+	<string>Lets you add xrkit's own controls (respring, lock, screenshot, VPN, network speed, battery…) and other tweaks' controls to Control Center, and move or remove fixed ones like Connectivity and Music in Settings › Control Center. Your current layout is kept. Has no effect while CCSupport is installed.</string>
+	<key>把 xrkit 的所有开关和滑块恢复成默认值，多任务里锁定的 App 也会清空。完成后需要注销。</key>
+	<string>Restores every xrkit switch and slider to its default and clears locked apps in the App Switcher. Respring afterwards.</string>
+	<key>排列样式</key>
+	<string>Layout</string>
+	<key>控制中心</key>
+	<string>Control Center</string>
+	<key>整体背景</key>
+	<string>Background</string>
+	<key>文件夹</key>
+	<string>Folders</string>
+	<key>显示</key>
+	<string>Display</string>
+	<key>显示第一个 App 的图标</key>
+	<string>Show First App's Icon</string>
+	<key>显示第一个 App 的图标时，文件夹的角标照常显示，点按仍是打开文件夹。</key>
+	<string>When showing the first app's icon, the folder's badge still shows and tapping still opens the folder.</string>
+	<key>暂停后收起</key>
+	<string>Hide When Paused</string>
+	<key>更多控件</key>
+	<string>More Controls</string>
+	<key>有些设置要注销后才会完全恢复，现在注销吗？</key>
+	<string>Some settings only fully reset after a respring. Respring now?</string>
+	<key>有新版 %@</key>
+	<string>Update: %@</string>
+	<key>有通知时停在锁屏</key>
+	<string>Stay When Notified</string>
+	<key>模块圆角</key>
+	<string>Corner Radius</string>
+	<key>模块背景</key>
+	<string>Module Background</string>
+	<key>注销</key>
+	<string>Respring</string>
+	<key>浅色</key>
+	<string>Light</string>
+	<key>深色</key>
+	<string>Dark</string>
+	<key>版本</key>
+	<string>Version</string>
+	<key>直接进主屏幕</key>
+	<string>Unlock to Home Screen</string>
+	<key>相机按钮</key>
+	<string>Camera Button</string>
+	<key>确定要注销（重启 SpringBoard）吗？</key>
+	<string>Respring (restart SpringBoard) now?</string>
+	<key>禁止下滑搜索</key>
+	<string>Disable Pull-Down Search</string>
+	<key>禁止左滑打开相机</key>
+	<string>Disable Camera Swipe</string>
+	<key>稍后</key>
+	<string>Later</string>
+	<key>竖线右边显示在多任务里、但不在 Dock 里的 App，按最近使用排序，点按打开。右边有 App 时 Dock 图标会自动缩小排开。</key>
+	<string>Apps in the App Switcher but not in the Dock appear to the right of a divider, most recent first; tap to open. The Dock icons shrink to make room.</string>
+	<key>竖线右边的 App</key>
+	<string>Recent Apps</string>
+	<key>系统</key>
+	<string>System</string>
+	<key>系统（堆叠）</key>
+	<string>System (Stack)</string>
+	<key>网格</key>
+	<string>Grid</string>
+	<key>背景</key>
+	<string>Background</string>
+	<key>角标使用图标主色调</key>
+	<string>Badges Use Icon Color</string>
+	<key>识别成功后直接进主屏幕，不用再上滑。屏幕没亮、在小组件页、待机显示时不会自动进入。打开「有通知时停在锁屏」后，锁屏上有通知或音乐时会先停下来。</key>
+	<string>Go straight to the Home Screen after Face ID, no swipe needed. Not when the screen is off, on the widgets page or in StandBy. With "Stay When Notified" on, it stops on the Lock Screen when there are notifications or music.</string>
+	<key>语言</key>
+	<string>Language</string>
+	<key>负一屏</key>
+	<string>Today View</string>
+	<key>越狱环境</key>
+	<string>Jailbreak</string>
+	<key>跟随系统</key>
+	<string>System</string>
+	<key>软件源</key>
+	<string>Source</string>
+	<key>软件源与反馈</key>
+	<string>Source &amp; Feedback</string>
+	<key>软件源地址：https://oryanfang.github.io/repo/
+「复制问题信息」会复制 xrkit 版本、iOS 版本、机型和改过的设置（锁定的 App 只写数量），可以贴进反馈里。</key>
+	<string>Source: https://oryanfang.github.io/repo/
+"Copy Debug Info" copies the xrkit and iOS versions, device model and changed settings (locked apps as a count only) for pasting into a report.</string>
+	<key>运行中的 App 显示白点</key>
+	<string>Dots Under Running Apps</string>
+	<key>还在测试、可能不稳定的功能。</key>
+	<string>Features still in testing; may be unstable.</string>
+	<key>这里的功能还在测试，可能不稳定。遇到桌面卡住、Dock 错位，先关掉这里的开关；万一反复重启进了安全模式，xrkit 不会加载，回来关掉即可。</key>
+	<string>These features are still in testing and may be unstable. If SpringBoard hangs or the Dock looks wrong, turn them off here; if it ends up in Safe Mode, xrkit won't load, so just come back and turn them off.</string>
+	<key>适用系统</key>
+	<string>Supported iOS</string>
+	<key>透明</key>
+	<string>Clear</string>
+	<key>透明度</key>
+	<string>Opacity</string>
+	<key>通知角标</key>
+	<string>Notification Badges</string>
+	<key>重置</key>
+	<string>Reset</string>
+	<key>重置所有设置</key>
+	<string>Reset All Settings</string>
+	<key>锁屏</key>
+	<string>Lock Screen</string>
+	<key>长按卡片锁定 / 解锁：锁住的卡片在 App 图标左边显示小锁，划不掉，清除全部时也会跳过。</key>
+	<string>Long-press a card to lock or unlock it. Locked cards show a lock next to the app icon, can't be swiped away and are skipped by Clear All.</string>
+	<key>长按锁定 App</key>
+	<string>Long-Press to Lock</string>
+	<key>间距</key>
+	<string>Spacing</string>
+	<key>隐藏</key>
+	<string>Hide</string>
+	<key>隐藏名称和图标</key>
+	<string>Hide Titles and Icons</string>
+	<key>隐藏整个 Dock</key>
+	<string>Hide Dock</string>
+	<key>隐藏文件夹背景</key>
+	<string>Hide Folder Background</string>
+	<key>隐藏状态栏</key>
+	<string>Hide Status Bar</string>
+	<key>隐藏相机按钮后仍能左滑打开相机，要一起禁掉就打开下面的「禁止左滑打开相机」。</key>
+	<string>With the camera button hidden you can still swipe left for the camera; turn on "Disable Camera Swipe" below to block that too.</string>
+	<key>需注销</key>
+	<string>Respring</string>
+	<key>静止时半透明</key>
+	<string>Fade When Idle</string>
+	<key>静止时半透明：碰到屏幕马上恢复，抬手后过一会儿再淡回去。</key>
+	<string>Fade When Idle: icons come back as soon as you touch the screen and fade again a moment after you lift your finger.</string>
+	<key>面容识别</key>
+	<string>Face ID</string>
+	<key>音乐播放器</key>
+	<string>Now Playing</string>
+	<key>页面圆点</key>
+	<string>Page Dots</string>
+</dict>
+</plist>

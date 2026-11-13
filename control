@@ -1,6 +1,6 @@
 Package: com.xyrith.xrkit
 Name: xrkit
-Version: 0.2.0
+Version: 0.2.1
 Architecture: iphoneos-arm64e
 Description: iOS 17 综合优化插件（只在 iOS 17.3.1 上测试过，其他版本可能部分功能不生效；需要 roothide 越狱环境）
 Maintainer: xyrith
