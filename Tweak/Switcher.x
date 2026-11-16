@@ -13,6 +13,11 @@
 // - 清除全部：SBMainSwitcherControllerCoordinator -recentAppLayouts 里每个 App 调 -deleteAppLayoutForDisplayItem:
 //   （系统按 Bundle ID 删卡片走的就是它），跳过锁住的；全清空了就收起切换器。
 #import "XRKCommon.h"
+#import <sys/resource.h>
+
+@interface SBApplicationController : NSObject
+- (id)applicationWithBundleIdentifier:(NSString *)bundleID;
+@end
 
 @interface SBDisplayItem : NSObject
 @property (nonatomic, readonly) NSString *bundleIdentifier;
@@ -316,6 +321,126 @@ static void XRKLayoutHeaderLocks(UIView *header) {
     }
 }
 
+// 内存占用：名称栏右边一行小字。读 phys_footprint（和 Xcode / 系统内存压力用的同一个口径）；
+// SpringBoard 能直接读其他 App 的（探测确认，2026-11-16）。多任务打开时每 2 秒刷新，关掉就停。
+extern int proc_pid_rusage(int pid, int flavor, rusage_info_t *buffer);
+static const void *kXRKHeaderMemKey = &kXRKHeaderMemKey;
+static NSTimer *gXRKMemTimer;
+
+static NSString *XRKMemoryText(NSString *bid) {
+    SBApplicationController *ac = [XRKClass("SBApplicationController") valueForKey:@"sharedInstance"];
+    id app = [ac respondsToSelector:@selector(applicationWithBundleIdentifier:)] ? [ac applicationWithBundleIdentifier:bid] : nil;
+    id state = [app respondsToSelector:@selector(processState)] ? [app valueForKey:@"processState"] : nil;
+    int pid = [state respondsToSelector:@selector(pid)] ? [[state valueForKey:@"pid"] intValue] : 0;
+    if (pid <= 0) return nil;   // 被系统挂起后杀掉、只剩快照的卡片
+    struct rusage_info_v4 ri = {0};
+    if (proc_pid_rusage(pid, RUSAGE_INFO_V4, (rusage_info_t *)&ri) != 0) return nil;
+    double mb = ri.ri_phys_footprint / 1048576.0;
+    return mb >= 1000 ? [NSString stringWithFormat:@"%.1f GB", mb / 1024] : [NSString stringWithFormat:@"%.0f MB", mb];
+}
+
+#if XRK_DEBUG
+#define XRKMemWhy(fmt, ...) XRKDebugLog(@"[Mem] " fmt, ##__VA_ARGS__)
+#else
+#define XRKMemWhy(...) do {} while (0)
+#endif
+
+// 名称栏窄（iPad / 网格样式只有约 140pt 宽，右边放不下）时，内存改成名字下面一行小字：
+// 名字往上挪，图标不动（正好跟两行文字居中）。系统每次排版会重设名字位置，这里记住"系统给的"和"我们改过的"，避免反复挪。
+static const void *kXRKBaseFrameKey = &kXRKBaseFrameKey;
+static const void *kXRKAppliedFrameKey = &kXRKAppliedFrameKey;
+
+static CGRect XRKSystemFrame(UIView *v) {
+    NSValue *applied = objc_getAssociatedObject(v, kXRKAppliedFrameKey), *base = objc_getAssociatedObject(v, kXRKBaseFrameKey);
+    if (applied && base && CGRectEqualToRect(applied.CGRectValue, v.frame)) return base.CGRectValue;
+    return v.frame;
+}
+
+static void XRKShiftTitle(UIView *v, CGFloat dy) {
+    if (!v) return;
+    CGRect base = XRKSystemFrame(v);
+    if (dy == 0 && !objc_getAssociatedObject(v, kXRKAppliedFrameKey)) return;
+    CGRect f = CGRectOffset(base, 0, dy);
+    v.frame = f;
+    objc_setAssociatedObject(v, kXRKBaseFrameKey, dy ? [NSValue valueWithCGRect:base] : nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(v, kXRKAppliedFrameKey, dy ? [NSValue valueWithCGRect:f] : nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+static void XRKLayoutHeaderMemory(UIView *header) {
+    UILabel *mem = objc_getAssociatedObject(header, kXRKHeaderMemKey);
+    mem.hidden = YES;
+    UILabel *title = nil;
+    NSString *bid = nil;
+    NSArray *items = [header respondsToSelector:@selector(titleItems)] ? [header valueForKey:@"titleItems"] : nil;
+    if (items.count == 1) {   // 分屏的两个 App 不显示
+        NSDictionary *labels = nil;
+        @try { labels = [header valueForKey:@"_itemsToTitleLabels"]; } @catch (NSException *e) {}
+        id displayItem = [items.firstObject respondsToSelector:@selector(displayItem)] ? [items.firstObject valueForKey:@"displayItem"] : nil;
+        bid = [displayItem respondsToSelector:@selector(bundleIdentifier)] ? [displayItem valueForKey:@"bundleIdentifier"] : nil;
+        id t = [labels isKindOfClass:[NSDictionary class]] && displayItem ? labels[displayItem] : nil;
+        if ([t isKindOfClass:[UILabel class]]) title = t;
+    }
+    NSString *text = nil;
+    if (XRKOn(kXRKSwShowMemory) && header.window && bid && title && !title.hidden && title.alpha >= 0.01) text = XRKMemoryText(bid);
+    if (!text) {
+        XRKShiftTitle(title, 0);
+        if (bid && title && title.alpha >= 0.01) XRKMemWhy(@"%@ no text", bid);
+        return;
+    }
+    if (!mem) {
+        mem = [UILabel new];
+        mem.userInteractionEnabled = NO;
+        [header addSubview:mem];
+        objc_setAssociatedObject(header, kXRKHeaderMemKey, mem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    BOOL narrow = header.bounds.size.width < 200;
+    CGFloat size = narrow ? 11 : MAX(11, round(title.font.pointSize * 0.82));
+    mem.font = [UIFont monospacedDigitSystemFontOfSize:size weight:UIFontWeightMedium];
+    mem.textColor = [title.textColor ?: UIColor.whiteColor colorWithAlphaComponent:0.6];
+    mem.alpha = title.alpha;
+    mem.text = text;
+    [mem sizeToFit];
+    BOOL rtl = header.effectiveUserInterfaceLayoutDirection == UIUserInterfaceLayoutDirectionRightToLeft;
+    CGRect tf = XRKSystemFrame(title), mf = mem.frame;
+    if (narrow) {
+        // 名字 + 内存两行，整体跟原来的名字居中
+        CGFloat gap = 0, group = tf.size.height + gap + mf.size.height;
+        CGFloat dy = round(CGRectGetMidY(tf) - group / 2 - tf.origin.y);
+        XRKShiftTitle(title, dy);
+        mf.size.width = MIN(mf.size.width, header.bounds.size.width);
+        mf.origin.x = rtl ? CGRectGetMaxX(tf) - mf.size.width : tf.origin.x;
+        mf.origin.y = round(tf.origin.y + dy + tf.size.height + gap);
+    } else {
+        XRKShiftTitle(title, 0);
+        mf.origin.x = rtl ? 0 : header.bounds.size.width - mf.size.width;
+        mf.origin.y = round(CGRectGetMidY(tf) - mf.size.height / 2);
+        BOOL overlaps = rtl ? CGRectGetMaxX(mf) + 6 > CGRectGetMinX(tf) : CGRectGetMinX(mf) - 6 < CGRectGetMaxX(tf);
+        if (overlaps) { XRKMemWhy(@"%@ overlap header=%@", bid, NSStringFromCGRect(header.bounds)); return; }
+    }
+    XRKMemWhy(@"%@ ok %@ narrow=%d", bid, text, narrow);
+    mem.frame = mf;
+    mem.hidden = NO;
+}
+
+static void XRKMemTick(void) {
+    BOOL any = NO;
+    for (UIView *h in gHeaderViews.allObjects) {
+        if (!h.window) continue;
+        any = YES;
+        XRKLayoutHeaderMemory(h);
+    }
+    if (!any || !XRKOn(kXRKSwShowMemory)) {
+        [gXRKMemTimer invalidate];
+        gXRKMemTimer = nil;
+    }
+}
+
+static void XRKStartMemTimer(void) {
+    if (gXRKMemTimer || !XRKOn(kXRKSwShowMemory)) return;
+    gXRKMemTimer = [NSTimer scheduledTimerWithTimeInterval:2 repeats:YES block:^(__unused NSTimer *t) { XRKMemTick(); }];
+    gXRKMemTimer.tolerance = 0.5;
+}
+
 static void XRKRefreshAllHeaders(void) {
     for (UIView *h in gHeaderViews.allObjects) {
         [h setNeedsLayout];
@@ -431,6 +556,8 @@ static void XRKCancelSystemGestures(UIView *view, UIGestureRecognizer *keep, int
     if (self.bounds.size.height > 10) gXRKHeaderHeight = self.bounds.size.height;
     XRKCompactHeader(self);
     XRKLayoutHeaderLocks(self);
+    XRKLayoutHeaderMemory(self);
+    if (self.window) XRKStartMemTimer();
 }
 
 %end
@@ -469,7 +596,7 @@ void XRKInitSwitcher(void) {
 #endif
         gHeaderViews = [NSHashTable weakObjectsHashTable];
         %init(XRKSwitcherGestures);
-        XRKAddRefresher(@[kXRKSwLockApps], ^{ XRKRefreshAllHeaders(); });
+        XRKAddRefresher(@[kXRKSwLockApps, kXRKSwShowMemory], ^{ XRKRefreshAllHeaders(); });
 #if XRK_DEBUG
         XRKDebugAddShotDumper(^{
             for (UIView *h in gHeaderViews.allObjects) {

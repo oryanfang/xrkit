@@ -114,6 +114,114 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
+			<string>行列数只能比系统多，图标放不下时会自动缩小一点；改回系统后，多出来的图标会被挪到后面的页。隐藏「完成」后，点按空白处或从底部上滑退出编辑。</string>
+			<key>label</key>
+			<string>布局</string>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>com.xyrith.xrkit/prefschanged</string>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>default</key>
+			<integer>4</integer>
+			<key>defaults</key>
+			<string>com.xyrith.xrkit</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>key</key>
+			<string>sbColumns</string>
+			<key>label</key>
+			<string>每页列数</string>
+			<key>shortTitles</key>
+			<array>
+				<string>4</string>
+				<string>5</string>
+				<string>6</string>
+			</array>
+			<key>validTitles</key>
+			<array>
+				<string>4 列（系统）</string>
+				<string>5 列</string>
+				<string>6 列</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<integer>4</integer>
+				<integer>5</integer>
+				<integer>6</integer>
+			</array>
+			<key>xrkRespring</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>com.xyrith.xrkit/prefschanged</string>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>default</key>
+			<integer>6</integer>
+			<key>defaults</key>
+			<string>com.xyrith.xrkit</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>key</key>
+			<string>sbRows</string>
+			<key>label</key>
+			<string>每页行数</string>
+			<key>shortTitles</key>
+			<array>
+				<string>6</string>
+				<string>7</string>
+				<string>8</string>
+			</array>
+			<key>validTitles</key>
+			<array>
+				<string>6 行（系统）</string>
+				<string>7 行</string>
+				<string>8 行</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<integer>6</integer>
+				<integer>7</integer>
+				<integer>8</integer>
+			</array>
+			<key>xrkRespring</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>com.xyrith.xrkit/prefschanged</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.xyrith.xrkit</string>
+			<key>key</key>
+			<string>sbHideEditAddWidget</string>
+			<key>label</key>
+			<string>编辑时隐藏「+」</string>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>com.xyrith.xrkit/prefschanged</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.xyrith.xrkit</string>
+			<key>key</key>
+			<string>sbHideEditDone</string>
+			<key>label</key>
+			<string>编辑时隐藏「完成」</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
 			<string>显示第一个 App 的图标时，文件夹的角标照常显示，点按仍是打开文件夹。</string>
 			<key>label</key>
 			<string>文件夹</string>
@@ -243,6 +351,56 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
+			<string>「强制退出」「重新打开」只在 App 正在运行时出现；强制退出会顺便把多任务里的卡片划掉。</string>
+			<key>label</key>
+			<string>长按图标菜单</string>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>com.xyrith.xrkit/prefschanged</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.xyrith.xrkit</string>
+			<key>key</key>
+			<string>sbMenuCopyBundleID</string>
+			<key>label</key>
+			<string>复制 Bundle ID</string>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>com.xyrith.xrkit/prefschanged</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.xyrith.xrkit</string>
+			<key>key</key>
+			<string>sbMenuForceQuit</string>
+			<key>label</key>
+			<string>强制退出</string>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>com.xyrith.xrkit/prefschanged</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.xyrith.xrkit</string>
+			<key>key</key>
+			<string>sbMenuRelaunch</string>
+			<key>label</key>
+			<string>重新打开</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
 			<string>静止时半透明：碰到屏幕马上恢复，抬手后过一会儿再淡回去。</string>
 			<key>label</key>
 			<string>图标</string>
@@ -274,6 +432,36 @@
 			<string>sbDownloadPercent</string>
 			<key>label</key>
 			<string>下载时显示百分比</string>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>com.xyrith.xrkit/prefschanged</string>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>default</key>
+			<integer>0</integer>
+			<key>defaults</key>
+			<string>com.xyrith.xrkit</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>key</key>
+			<string>sbTapHaptic</string>
+			<key>label</key>
+			<string>点按时震动</string>
+			<key>validTitles</key>
+			<array>
+				<string>关</string>
+				<string>轻</string>
+				<string>中</string>
+				<string>重</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+			</array>
 		</dict>
 		<dict>
 			<key>PostNotification</key>

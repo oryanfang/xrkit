@@ -112,6 +112,8 @@ void XRKSetHiddenByUs(UIView *view, BOOL hide);
 
 void XRKInitHomeBar(void);
 void XRKInitHomeScreen(void);
+void XRKInitHomeGrid(void);
+void XRKInitIconMenu(void);
 void XRKInitDock(void);
 void XRKInitDockRunning(void);
 void XRKInitIcons(void);

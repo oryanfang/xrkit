@@ -113,6 +113,13 @@ PAGES["SpringBoard"] = ("主屏幕", [
     switch("图标名称", "sbHideIconLabels"),
     switch("通知角标", "sbHideBadges"),
 
+    group("布局", "行列数只能比系统多，图标放不下时会自动缩小一点；改回系统后，多出来的图标会被挪到后面的页。"
+                 "隐藏「完成」后，点按空白处或从底部上滑退出编辑。"),
+    choice("每页列数", "sbColumns", [4, 5, 6], ["4 列（系统）", "5 列", "6 列"], 4, short=["4", "5", "6"], respring=True),
+    choice("每页行数", "sbRows", [6, 7, 8], ["6 行（系统）", "7 行", "8 行"], 6, short=["6", "7", "8"], respring=True),
+    switch("编辑时隐藏「+」", "sbHideEditAddWidget"),
+    switch("编辑时隐藏「完成」", "sbHideEditDone"),
+
     group("文件夹", "显示第一个 App 的图标时，文件夹的角标照常显示，点按仍是打开文件夹。"),
     switch("隐藏文件夹背景", "sbHideFolderBackground"),
     switch("显示第一个 App 的图标", "sbFolderFirstIcon"),
@@ -123,9 +130,15 @@ PAGES["SpringBoard"] = ("主屏幕", [
     choice("图标数量", "dockIconCount", [3, 4, 5, 6], ["3 个", "4 个（系统）", "5 个", "6 个"], 4,
            short=["3", "4", "5", "6"], message="6 个时图标会自动缩小一点才放得下。", respring=True),
 
+    group("长按图标菜单", "「强制退出」「重新打开」只在 App 正在运行时出现；强制退出会顺便把多任务里的卡片划掉。"),
+    switch("复制 Bundle ID", "sbMenuCopyBundleID"),
+    switch("强制退出", "sbMenuForceQuit"),
+    switch("重新打开", "sbMenuRelaunch"),
+
     group("图标", "静止时半透明：碰到屏幕马上恢复，抬手后过一会儿再淡回去。"),
     switch("角标使用图标主色调", "sbBadgeIconColor"),
     switch("下载时显示百分比", "sbDownloadPercent"),
+    choice("点按时震动", "sbTapHaptic", [0, 1, 2, 3], ["关", "轻", "中", "重"], 0),
     switch("静止时半透明", "sbIdleFade"),
     slider("透明度", "sbIdleFadeAlpha", 0.4, 0.1, 1.0, "percent", 3, requires="sbIdleFade"),
     slider("延迟", "sbIdleFadeDelay", 3.0, 0.5, 10.0, "seconds", 3, requires="sbIdleFade"),
@@ -178,10 +191,12 @@ PAGES["Switcher"] = ("多任务", [
                    "「iPad」：直接用 iPad 的多任务界面和手势。带卡死保护：万一卡住超过 5 秒，会自动改回「系统」并重启桌面。",
            respring=True),
 
-    group("卡片", "长按卡片锁定 / 解锁：锁住的卡片在 App 图标左边显示小锁，划不掉，清除全部时也会跳过。"),
+    group("卡片", "长按卡片锁定 / 解锁：锁住的卡片在 App 图标左边显示小锁，划不掉，清除全部时也会跳过。"
+                 "内存占用显示在名称栏右边，打开多任务时每 2 秒更新一次。"),
     switch("隐藏名称和图标", "swHideTitles"),
     switch("长按锁定 App", "swLockApps"),
     switch("往下拉清除全部", "swPullDownClear"),
+    switch("显示内存占用", "swShowMemory"),
 
     group("卡片格式", "100% / 0% 是默认样子，下次打开多任务生效；「iPad」样式下要注销才生效。"),
     slider("大小", "swCardScale", 1.0, 0.6, 1.3, "percent", 4),
@@ -263,8 +278,23 @@ EN = {
     "排列样式": "Layout", "系统（堆叠）": "System (Stack)", "网格": "Grid", "iPad": "iPad",
     "「网格」：卡片排成网格，上滑和打开、关闭的手感还是 iPhone 那套。\n「iPad」：直接用 iPad 的多任务界面和手势。带卡死保护：万一卡住超过 5 秒，会自动改回「系统」并重启桌面。":
         "Grid: cards in a grid, with iPhone gestures and animations.\niPad: the iPad App Switcher and gestures. Has a freeze guard: if it hangs for more than 5 seconds it switches back to System and restarts SpringBoard.",
-    "卡片": "Cards", "长按卡片锁定 / 解锁：锁住的卡片在 App 图标左边显示小锁，划不掉，清除全部时也会跳过。":
-        "Long-press a card to lock or unlock it. Locked cards show a lock next to the app icon, can't be swiped away and are skipped by Clear All.",
+    "卡片": "Cards", "长按卡片锁定 / 解锁：锁住的卡片在 App 图标左边显示小锁，划不掉，清除全部时也会跳过。内存占用显示在名称栏右边，打开多任务时每 2 秒更新一次。":
+        "Long-press a card to lock or unlock it. Locked cards show a lock next to the app icon, can't be swiped away and are skipped by Clear All. "
+        "Memory usage appears on the right of the title bar and updates every 2 seconds while the App Switcher is open.",
+    "显示内存占用": "Show Memory Usage",
+    # 主屏幕 · 布局
+    "布局": "Layout",
+    "行列数只能比系统多，图标放不下时会自动缩小一点；改回系统后，多出来的图标会被挪到后面的页。隐藏「完成」后，点按空白处或从底部上滑退出编辑。":
+        "Columns and rows can only be increased. Icons shrink a little when they don't fit; switching back to the system size moves the extra icons to later pages. "
+        "With \"Done\" hidden, tap an empty area or swipe up from the bottom to stop editing.",
+    "每页列数": "Columns", "4 列（系统）": "4 (System)", "5 列": "5", "6 列": "6",
+    "每页行数": "Rows", "6 行（系统）": "6 (System)", "7 行": "7", "8 行": "8",
+    "长按图标菜单": "Icon Menu",
+    "「强制退出」「重新打开」只在 App 正在运行时出现；强制退出会顺便把多任务里的卡片划掉。":
+        "\"Force Quit\" and \"Relaunch\" only appear while the app is running. Force Quit also removes its card from the App Switcher.",
+    "复制 Bundle ID": "Copy Bundle ID", "强制退出": "Force Quit", "重新打开": "Relaunch",
+    "点按时震动": "Haptic on Tap", "轻": "Light", "中": "Medium", "重": "Strong",
+    "编辑时隐藏「+」": "Hide \"+\" While Editing", "编辑时隐藏「完成」": "Hide \"Done\" While Editing",
     "隐藏名称和图标": "Hide Titles and Icons", "长按锁定 App": "Long-Press to Lock", "往下拉清除全部": "Pull Down to Clear All",
     "卡片格式": "Card Style", "100% / 0% 是默认样子，下次打开多任务生效；「iPad」样式下要注销才生效。":
         "100% / 0% is the default. Takes effect the next time the App Switcher opens; in the iPad layout it needs a respring.",

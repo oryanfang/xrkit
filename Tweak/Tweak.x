@@ -41,9 +41,11 @@ static void XRKPrefsChanged(CFNotificationCenterRef center, void *observer,
 
         XRKInitHomeBar();
         XRKInitHomeScreen();
+        XRKInitHomeGrid();
         XRKInitDock();
         XRKInitDockRunning();
         XRKInitIcons();
+        XRKInitIconMenu();
         XRKInitFolders();
         XRKInitIdleFade();
         XRKInitControlCenter();

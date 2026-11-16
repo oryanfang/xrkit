@@ -18,6 +18,18 @@
 #define kXRKDownloadPercent    @"sbDownloadPercent"     // 下载中的 App 图标中间显示百分比
 #define kXRKBadgeIconColor     @"sbBadgeIconColor"      // 角标改成图标主色调，数字自动黑/白
 
+// 主屏幕 · 布局
+#define kXRKHsColumns          @"sbColumns"             // 每页列数 4～6，4 = 系统；需要注销生效
+#define kXRKHsRows             @"sbRows"                // 每页行数 6～8，6 = 系统；需要注销生效
+#define kXRKHsHideAddWidget    @"sbHideEditAddWidget"   // 编辑模式隐藏左上「+」
+#define kXRKHsHideEditDone     @"sbHideEditDone"        // 编辑模式隐藏右上「完成」
+
+// 主屏幕 · 长按图标菜单、点按震动
+#define kXRKIconMenuCopyID     @"sbMenuCopyBundleID"    // 菜单加「复制 Bundle ID」
+#define kXRKIconMenuQuit       @"sbMenuForceQuit"       // 菜单加「强制退出」（App 在运行时才出现）
+#define kXRKIconMenuRelaunch   @"sbMenuRelaunch"        // 菜单加「重新打开」（App 在运行时才出现）
+#define kXRKIconTapHaptic      @"sbTapHaptic"           // 点按图标震动：0 关 / 1 轻 / 2 中 / 3 重
+
 // Dock
 #define kXRKDockHide           @"dockHide"
 #define kXRKDockBackground     @"dockBackgroundStyle"   // 0 系统 / 1 透明 / 2 深色 / 3 浅色
@@ -56,6 +68,7 @@
 #define kXRKSwLockApps            @"swLockApps"             // 长按卡片锁定，锁住的划不掉
 #define kXRKSwLockedApps          @"swLockedApps"           // 锁定的 Bundle ID 数组（插件在 SpringBoard 里写）
 #define kXRKSwPullDownClear       @"swPullDownClear"        // 任意卡片往下拉清除全部
+#define kXRKSwShowMemory          @"swShowMemory"           // 卡片名称栏右边显示 App 占用的内存
 #define kXRKSwStyle               @"swStyle"                // 排列样式：0 系统（堆叠）/ 2 网格 / 3 iPad（见 GridFull.x）；需注销
 #define kXRKSwCardScale           @"swCardScale"            // 卡片大小 0.6～1.3，默认 1（iPad 样式下再乘 1.105）
 #define kXRKSwCardCorner          @"swCardCorner"           // 卡片圆角 0～2，默认 1

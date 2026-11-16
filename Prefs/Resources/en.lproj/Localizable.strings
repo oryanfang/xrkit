@@ -16,12 +16,24 @@
 	<string>3</string>
 	<key>4 个（系统）</key>
 	<string>4 (System)</string>
+	<key>4 列（系统）</key>
+	<string>4 (System)</string>
 	<key>5 个</key>
+	<string>5</string>
+	<key>5 列</key>
 	<string>5</string>
 	<key>6 个</key>
 	<string>6</string>
 	<key>6 个时图标会自动缩小一点才放得下。</key>
 	<string>With 6 icons, they shrink slightly to fit.</string>
+	<key>6 列</key>
+	<string>6</string>
+	<key>6 行（系统）</key>
+	<string>6 (System)</string>
+	<key>7 行</key>
+	<string>7</string>
+	<key>8 行</key>
+	<string>8</string>
 	<key>App 资源库</key>
 	<string>App Library</string>
 	<key>Mac 风格 Dock</key>
@@ -32,6 +44,8 @@
 	<string>"Swipe up to open"</string>
 	<key>「底部搜索按钮」和系统设置里的同一个开关同步。</key>
 	<string>"Search Button" is the same switch as the one in system Settings.</string>
+	<key>「强制退出」「重新打开」只在 App 正在运行时出现；强制退出会顺便把多任务里的卡片划掉。</key>
+	<string>"Force Quit" and "Relaunch" only appear while the app is running. Force Quit also removes its card from the App Switcher.</string>
 	<key>「暂停后收起」：暂停后播放器马上从锁屏消失（系统会再留一段时间）。
 「完全隐藏」：播放时也不在锁屏显示。</key>
 	<string>Hide When Paused: the player leaves the Lock Screen as soon as you pause (the system keeps it a while).
@@ -46,6 +60,8 @@ iPad: the iPad App Switcher and gestures. Has a freeze guard: if it hangs for mo
 	<string>Download Percentage</string>
 	<key>不显示左下角预览</key>
 	<string>No Thumbnail Preview</string>
+	<key>中</key>
+	<string>Medium</string>
 	<key>中文</key>
 	<string>中文</string>
 	<key>主屏幕</key>
@@ -90,6 +106,8 @@ iPad: the iPad App Switcher and gestures. Has a freeze guard: if it hangs for mo
 	<string>Corners</string>
 	<key>在 Sileo 中添加</key>
 	<string>Add to Sileo</string>
+	<key>复制 Bundle ID</key>
+	<string>Copy Bundle ID</string>
 	<key>复制地址</key>
 	<string>Copy URL</string>
 	<key>复制问题信息</key>
@@ -110,12 +128,16 @@ iPad: the iPad App Switcher and gestures. Has a freeze guard: if it hangs for mo
 	<string>Copied</string>
 	<key>已重置</key>
 	<string>Reset Done</string>
+	<key>布局</key>
+	<string>Layout</string>
 	<key>底部搜索按钮</key>
 	<string>Search Button</string>
 	<key>底部横条</key>
 	<string>Home Bar</string>
 	<key>延迟</key>
 	<string>Delay</string>
+	<key>强制退出</key>
+	<string>Force Quit</string>
 	<key>往下拉清除全部</key>
 	<string>Pull Down to Clear All</string>
 	<key>截图</key>
@@ -140,6 +162,8 @@ iPad: the iPad App Switcher and gestures. Has a freeze guard: if it hangs for mo
 	<string>Folders</string>
 	<key>显示</key>
 	<string>Display</string>
+	<key>显示内存占用</key>
+	<string>Show Memory Usage</string>
 	<key>显示第一个 App 的图标</key>
 	<string>Show First App's Icon</string>
 	<key>显示第一个 App 的图标时，文件夹的角标照常显示，点按仍是打开文件夹。</key>
@@ -158,12 +182,18 @@ iPad: the iPad App Switcher and gestures. Has a freeze guard: if it hangs for mo
 	<string>Corner Radius</string>
 	<key>模块背景</key>
 	<string>Module Background</string>
+	<key>每页列数</key>
+	<string>Columns</string>
+	<key>每页行数</key>
+	<string>Rows</string>
 	<key>注销</key>
 	<string>Respring</string>
 	<key>浅色</key>
 	<string>Light</string>
 	<key>深色</key>
 	<string>Dark</string>
+	<key>点按时震动</key>
+	<string>Haptic on Tap</string>
 	<key>版本</key>
 	<string>Version</string>
 	<key>直接进主屏幕</key>
@@ -186,10 +216,16 @@ iPad: the iPad App Switcher and gestures. Has a freeze guard: if it hangs for mo
 	<string>System</string>
 	<key>系统（堆叠）</key>
 	<string>System (Stack)</string>
+	<key>编辑时隐藏「+」</key>
+	<string>Hide "+" While Editing</string>
+	<key>编辑时隐藏「完成」</key>
+	<string>Hide "Done" While Editing</string>
 	<key>网格</key>
 	<string>Grid</string>
 	<key>背景</key>
 	<string>Background</string>
+	<key>行列数只能比系统多，图标放不下时会自动缩小一点；改回系统后，多出来的图标会被挪到后面的页。隐藏「完成」后，点按空白处或从底部上滑退出编辑。</key>
+	<string>Columns and rows can only be increased. Icons shrink a little when they don't fit; switching back to the system size moves the extra icons to later pages. With "Done" hidden, tap an empty area or swipe up from the bottom to stop editing.</string>
 	<key>角标使用图标主色调</key>
 	<string>Badges Use Icon Color</string>
 	<key>识别成功后直接进主屏幕，不用再上滑。屏幕没亮、在小组件页、待机显示时不会自动进入。打开「有通知时停在锁屏」后，锁屏上有通知或音乐时会先停下来。</key>
@@ -210,6 +246,8 @@ iPad: the iPad App Switcher and gestures. Has a freeze guard: if it hangs for mo
 「复制问题信息」会复制 xrkit 版本、iOS 版本、机型和改过的设置（锁定的 App 只写数量），可以贴进反馈里。</key>
 	<string>Source: https://oryanfang.github.io/repo/
 "Copy Debug Info" copies the xrkit and iOS versions, device model and changed settings (locked apps as a count only) for pasting into a report.</string>
+	<key>轻</key>
+	<string>Light</string>
 	<key>运行中的 App 显示白点</key>
 	<string>Dots Under Running Apps</string>
 	<key>还在测试、可能不稳定的功能。</key>
@@ -224,14 +262,20 @@ iPad: the iPad App Switcher and gestures. Has a freeze guard: if it hangs for mo
 	<string>Opacity</string>
 	<key>通知角标</key>
 	<string>Notification Badges</string>
+	<key>重</key>
+	<string>Strong</string>
+	<key>重新打开</key>
+	<string>Relaunch</string>
 	<key>重置</key>
 	<string>Reset</string>
 	<key>重置所有设置</key>
 	<string>Reset All Settings</string>
 	<key>锁屏</key>
 	<string>Lock Screen</string>
-	<key>长按卡片锁定 / 解锁：锁住的卡片在 App 图标左边显示小锁，划不掉，清除全部时也会跳过。</key>
-	<string>Long-press a card to lock or unlock it. Locked cards show a lock next to the app icon, can't be swiped away and are skipped by Clear All.</string>
+	<key>长按卡片锁定 / 解锁：锁住的卡片在 App 图标左边显示小锁，划不掉，清除全部时也会跳过。内存占用显示在名称栏右边，打开多任务时每 2 秒更新一次。</key>
+	<string>Long-press a card to lock or unlock it. Locked cards show a lock next to the app icon, can't be swiped away and are skipped by Clear All. Memory usage appears on the right of the title bar and updates every 2 seconds while the App Switcher is open.</string>
+	<key>长按图标菜单</key>
+	<string>Icon Menu</string>
 	<key>长按锁定 App</key>
 	<string>Long-Press to Lock</string>
 	<key>间距</key>

@@ -51,7 +51,7 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>长按卡片锁定 / 解锁：锁住的卡片在 App 图标左边显示小锁，划不掉，清除全部时也会跳过。</string>
+			<string>长按卡片锁定 / 解锁：锁住的卡片在 App 图标左边显示小锁，划不掉，清除全部时也会跳过。内存占用显示在名称栏右边，打开多任务时每 2 秒更新一次。</string>
 			<key>label</key>
 			<string>卡片</string>
 		</dict>
@@ -96,6 +96,20 @@
 			<string>swPullDownClear</string>
 			<key>label</key>
 			<string>往下拉清除全部</string>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>com.xyrith.xrkit/prefschanged</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.xyrith.xrkit</string>
+			<key>key</key>
+			<string>swShowMemory</string>
+			<key>label</key>
+			<string>显示内存占用</string>
 		</dict>
 		<dict>
 			<key>cell</key>

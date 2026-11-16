@@ -16,9 +16,11 @@ Objective‑C / Logos, built with Theos, for **roothide** jailbreaks. Made for i
 
 **Home Screen**
 - Hide: the home bar, the Today view, the App Library, page dots, the Search button, icon labels, notification badges.
+- Layout: more columns (up to 6) and rows (up to 8) per page, icons shrink to fit; hide the "+" and "Done" buttons while editing.
 - Folders: hide the background; show the folder as its first app's icon (the folder's badge still shows).
 - Dock: hide it, background style (system / clear / dark / light), icon count (3–6; icons shrink to fit 6).
-- Icons: badges take the app's main color, download percentage on installing apps, fade icons out when idle.
+- Icon menu: long‑press an app for Copy Bundle ID, Force Quit and Relaunch.
+- Icons: badges take the app's main color, download percentage on installing apps, fade icons out when idle, haptic feedback on tap.
 - Screenshots: skip the thumbnail in the corner and save straight to Photos.
 
 **Lock Screen**
@@ -35,7 +37,7 @@ Objective‑C / Logos, built with Theos, for **roothide** jailbreaks. Made for i
 
 **App Switcher**
 - Layout: system (stack) / grid / iPad.
-- Hide card titles and icons, long‑press to lock an app (locked apps can't be swiped away), pull down on any card to clear all.
+- Hide card titles and icons, long‑press to lock an app (locked apps can't be swiped away), pull down on any card to clear all, show each app's memory usage.
 - Card size, corner radius, spacing and vertical position.
 
 **Beta**
