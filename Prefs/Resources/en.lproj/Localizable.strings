@@ -148,8 +148,8 @@ iPad: the iPad App Switcher and gestures. Has a freeze guard: if it hangs for mo
 	<string>Gestures</string>
 	<key>手电筒按钮</key>
 	<string>Flashlight Button</string>
-	<key>打开后，xrkit 自带的控件（注销、锁屏、截屏、VPN、网速、电池等）和其他插件的控件都能加进控制中心；网络、音乐这些原本固定的控件也能在「设置 › 控制中心」里移动或删掉。现在的控件排列会保留。装了 CCSupport 时这个开关不起作用。</key>
-	<string>Lets you add xrkit's own controls (respring, lock, screenshot, VPN, network speed, battery…) and other tweaks' controls to Control Center, and move or remove fixed ones like Connectivity and Music in Settings › Control Center. Your current layout is kept. Has no effect while CCSupport is installed.</string>
+	<key>打开并注销后，xrkit 自带的控件（注销、锁屏、截屏、VPN、网速、电池等）和其他插件的控件会出现在「设置 › 控制中心」的「更多控制」里，点绿色 ＋ 加进控制中心（不会自动加）；网络、音乐这些原本固定的控件也能在那里移动或删掉。现在的控件排列会保留。那里看不到新控件时，从多任务里划掉「设置」再打开。装了 CCSupport 时这个开关不起作用。</key>
+	<string>After turning this on and respringing, xrkit's own controls (respring, lock, screenshot, VPN, network speed, battery…) and other tweaks' controls appear under More Controls in Settings › Control Center; tap the green + to add them (they aren't added automatically). Fixed controls like Connectivity and Music can be moved or removed there too. Your current layout is kept. If the new controls don't show up there, close Settings in the App Switcher and open it again. Has no effect while CCSupport is installed.</string>
 	<key>把 xrkit 的所有开关和滑块恢复成默认值，多任务里锁定的 App 也会清空。完成后需要注销。</key>
 	<string>Restores every xrkit switch and slider to its default and clears locked apps in the App Switcher. Respring afterwards.</string>
 	<key>排列样式</key>

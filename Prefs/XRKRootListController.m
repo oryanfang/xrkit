@@ -76,6 +76,9 @@ static void XRKRespringNow(void) {
     // options 4 = FadeToBlackTransition
     SBSRelaunchAction *relaunch = [actionClass actionWithReason:@"RestartRenderServer" options:4 targetURL:nil];
     [[serviceClass sharedService] sendActions:[NSSet setWithObject:relaunch] withResult:nil];
+    // 注销不一定会结束「设置」：留着的旧进程里，控制中心模块加载器还是按打开「设置」时的开关状态（甚至是装 xrkit 之前启动的），
+    // 「设置 › 控制中心」看不到新模块。屏幕变黑后顺便退出，下次打开就是新进程
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ exit(0); });
 }
 
 // 弹窗问要不要注销（主页的注销按钮、重置设置之后共用）

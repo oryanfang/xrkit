@@ -179,8 +179,7 @@ PAGES["ControlCenter"] = ("控制中心", [
     switch("亮度和音量显示百分比", "ccSliderPercent"),
     switch("隐藏状态栏", "ccHideStatusBar"),
 
-    group("更多控件", "打开后，xrkit 自带的控件（注销、锁屏、截屏、VPN、网速、电池等）和其他插件的控件都能加进控制中心；"
-                     "网络、音乐这些原本固定的控件也能在「设置 › 控制中心」里移动或删掉。现在的控件排列会保留。装了 CCSupport 时这个开关不起作用。"),
+    group("更多控件", "打开并注销后，xrkit 自带的控件（注销、锁屏、截屏、VPN、网速、电池等）和其他插件的控件会出现在「设置 › 控制中心」的「更多控制」里，点绿色 ＋ 加进控制中心（不会自动加）；网络、音乐这些原本固定的控件也能在那里移动或删掉。现在的控件排列会保留。那里看不到新控件时，从多任务里划掉「设置」再打开。装了 CCSupport 时这个开关不起作用。"),
     switch("启用更多控件", "ccModuleLoader", respring=True),
 ])
 
@@ -271,8 +270,8 @@ EN = {
     "整体背景": "Background", "模块背景": "Module Background", "模块圆角": "Corner Radius",
     "亮度和音量显示百分比": "Slider Percentages", "隐藏状态栏": "Hide Status Bar",
     "更多控件": "More Controls",
-    "打开后，xrkit 自带的控件（注销、锁屏、截屏、VPN、网速、电池等）和其他插件的控件都能加进控制中心；网络、音乐这些原本固定的控件也能在「设置 › 控制中心」里移动或删掉。现在的控件排列会保留。装了 CCSupport 时这个开关不起作用。":
-        "Lets you add xrkit's own controls (respring, lock, screenshot, VPN, network speed, battery…) and other tweaks' controls to Control Center, and move or remove fixed ones like Connectivity and Music in Settings › Control Center. Your current layout is kept. Has no effect while CCSupport is installed.",
+    "打开并注销后，xrkit 自带的控件（注销、锁屏、截屏、VPN、网速、电池等）和其他插件的控件会出现在「设置 › 控制中心」的「更多控制」里，点绿色 ＋ 加进控制中心（不会自动加）；网络、音乐这些原本固定的控件也能在那里移动或删掉。现在的控件排列会保留。那里看不到新控件时，从多任务里划掉「设置」再打开。装了 CCSupport 时这个开关不起作用。":
+        "After turning this on and respringing, xrkit's own controls (respring, lock, screenshot, VPN, network speed, battery…) and other tweaks' controls appear under More Controls in Settings › Control Center; tap the green + to add them (they aren't added automatically). Fixed controls like Connectivity and Music can be moved or removed there too. Your current layout is kept. If the new controls don't show up there, close Settings in the App Switcher and open it again. Has no effect while CCSupport is installed.",
     "启用更多控件": "Enable More Controls",
     # 多任务
     "排列样式": "Layout", "系统（堆叠）": "System (Stack)", "网格": "Grid", "iPad": "iPad",

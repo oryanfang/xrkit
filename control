@@ -1,6 +1,6 @@
 Package: com.xyrith.xrkit
 Name: xrkit
-Version: 0.2.2
+Version: 0.2.3
 Architecture: iphoneos-arm64e
 Description: All-in-one tweak for iOS 17: Home Screen, Lock Screen, Control Center and App Switcher. Only tested on iOS 17.3.1; requires a roothide jailbreak.
 Maintainer: xyrith
